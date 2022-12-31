@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    
+    <title>MyTunes</title>
+
+
+</head>
+<body>
+
+    <!--Nav Bar-->
+    <nav class = "navbar navbar-expand-lg bg-dark navbar-dark py-3">
+        <div class="container">
+            <a href = "#" class = "navbar-brand" > 
+                My Tunes
+            </a>
+
+            <button class="navbar-toggler" type = "button" data-bs-toggle="collapse" data-bs-target = "#navmenu"> 
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id = "navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#international" class="nav-link">
+                            International
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#local" class="nav-link">
+                            Local
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">
+                            About
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </nav>
+
+    <!--MYTUNES-->
+    <section class="bg-dark text-light p-5 p-lg-0 p-lg-5 m-5 text-center text-sm-start">
+        <div class="container">
+            <h2>
+                From the Album {{asongs[3][3]}} 
+            </h2>
+           
+        </div>
+    </section>
+
+    {% for asong in asongs %}
+    <section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 m-5 text-center text-sm-start">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                
+                    <div>
+                        <p style="font-size: 20px">
+                            {{ asong[0] }} <span style="font-size: 10x; font-style: italic"></span>
+                        </p>
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+
+
+
+    <!--Add in a new track-->
+    <section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+        <div class="container">
+            <h3>Add a new track</h3>
+            <form action="." method="post">
+                <!---->
+                <div class="form-group mb-2">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control is-invalid" value="">
+                    
+                    <div class="invalid-feedback">
+                        Track "" already exists on this album 
+                    </div>
+                    
+                </div>
+                <!---->
+                <div class="form-group mb-2">
+                    <label for="composer">Compose(s):</label>
+                    <input type="text" id="composer" name="composer" class="form-control{% if error %} is-invalid{% endif %}" >
+                    <div class="invalid-feedback">
+                        {% if error %}{{ error }}{% endif %}
+                        Please choose a valid band name.
+                    </div>
+                </div>
+                <!---->
+                <div class="form-group mb-2">
+                    <label for="time">TIME(ms):</label>
+                    <input type="text" id="time" name="time" class="form-control{% if error %} is-invalid{% endif %}" >
+                    <div class="invalid-feedback">
+                        {% if error %}{{ error }}{% endif %}
+                        Please choose a valid band name.
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="genre">Genre:</label>
+                    
+                    <select name="genre" id="genre">
+                        {% for genre in genres %}
+                        <option value="{{genre[0]}}">{{genre[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <br><br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <br><br>
+            </form>
+        </div>
+    </section>
+
+
+
+    
+
+
+<!-- Showcase 
+    <section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <div>
+                    <h1>
+                        Breaking <span class="text-warning">News</span> 
+                    </h1>
+                    <p class ="lead my-4 d-none d-sm-block">
+                        We aggregate the important news and let you know right away!
+                    </p>
+                    <button class="btn btn-primary btn-lg" id = "headbutton">
+                        Subscribe To Our News 
+                    </button>
+                </div>
+                <img class="img-fluid w-50 d-none d-sm-block" src="logo.svg">
+            </div>
+        </div>
+    </section>
+-->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>
